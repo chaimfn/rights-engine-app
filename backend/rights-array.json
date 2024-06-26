@@ -1063,6 +1063,73 @@
     },
     {
         "code": 2572,
-        "title": ""
+        "title": "הבטחת הכנסה למשלמי מזונות",
+        "rule": {
+            "condition": "&&",
+            "rules": [
+                {
+                    "field": "civilStatus",
+                    "operator": "in",
+                    "value": ["citizen", "resident"]
+                },
+                {
+                    "condition": "||",
+                    "rules": [
+                        {
+                            "condition": "&&",
+                            "rules": [
+                                {
+                                    "field": "gender",
+                                    "operator": "==",
+                                    "value": "male"
+                                },
+                                {
+                                    "field": "age",
+                                    "operator": "between",
+                                    "value": [18, 67]
+                                }
+                            ]
+                        },
+                        {
+                            "condition": "&&",
+                            "rules": [
+                                {
+                                    "field": "gender",
+                                    "operator": "==",
+                                    "value": "female"
+                                },
+                                {
+                                    "field": "age",
+                                    "operator": "between",
+                                    "value": [18, 62]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "field": "alimonyPayer", 
+                    "operator": "==",
+                    "value": true
+                },
+                {
+                    "field": "marritalStatus",
+                    "operator": "in",
+                    "value": ["divorced", "single", "separated", "widowhood", "abandoned"]
+                },
+                {
+                    "condition": "||",
+                    "rules": [
+                        {
+
+                        },
+                        {},
+                        {},
+                        {},
+                        {}
+                    ]
+                }
+            ]
+        }
     }
 ]
