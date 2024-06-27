@@ -1,4 +1,4 @@
-const _rights = require("./rights-array.json");
+const _rights = require("./data/rights-array.json");
 const fs = require("fs")
 
 let rights = [];
@@ -14,7 +14,7 @@ for (let i = 0; i < 300; i++) {
     }
 }
 
-fs.writeFile("./rights.json", JSON.stringify(rights, null, 2), (error) => {
+fs.writeFile("./data/rights.json", JSON.stringify(rights, null, 2), (error) => {
     if (error) {
         console.log('An error has occurred ', error);
         return;

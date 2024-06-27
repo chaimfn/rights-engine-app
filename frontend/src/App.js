@@ -1,30 +1,50 @@
 import React, { useState, useEffect } from 'react';
 import { RightModel } from "rights-engine-core"
 import './App.css';
+import _person from "./person.json"
 
 function App() {
-  const [rights, setRights] = useState(null);
-  const [privilegedRights, setPrivilegedRights] = useState(null);
-  const [notPrivilegedRights, setNotPrivilegedRights] = useState(null);
+  const [allRights, setAllRights] = useState(null);
+  const [entitledRights, setEntitledRights] = useState(null);
+  const [notEntitledRights, setNotEntitledRights] = useState(null);
+  const [uncertainRights, setUncertainRights] = useState(null);
   const [fields, setFields] = useState(null);
   const [txtarea, setTextarea] = useState(null);
 
   function sortRights(e) {
+    let person = {}
     try {
-      let person = JSON.parse(txtarea);
-      console.log(person);
-      rights?.forEach(right => {
-        console.log(right.isMatched(person))
-      });
-      let privileged = rights.filter(right => right.isMatched(person).isMatched);
-      console.log(privileged)
-      setPrivilegedRights(privileged);
-      let notPrivileged = rights.filter(right => right.isMatched(person).isMatched == false);
-      console.log(notPrivileged)
-      setNotPrivilegedRights(notPrivileged);
+      person = JSON.parse(txtarea);
     }
     catch (err) {
       console.error("failed to parse Person", err)
+    }
+    console.log(person);
+    let entitled = [], notEntitled = [], uncertain = [];
+    try {
+      let t1 = new Date();
+      allRights.forEach(right => {
+        let matched = right.isMatched(person);
+        right.log = matched.log;
+        if (matched.isMatched == true)
+          entitled.push(right);
+        else if (matched.isMatched == false)
+          notEntitled.push(right);
+        else uncertain.push(right)
+      });
+      let t2 = new Date();
+      console.log("entitled:", entitled?.length);
+      console.log("notEntitled:", notEntitled?.length);
+      console.log("uncertain:", uncertain.length)
+
+
+      setEntitledRights(entitled);
+      setNotEntitledRights(notEntitled);
+      setUncertainRights(uncertain);
+      console.log("sortTime:", t2.getTime() - t1.getTime());
+    }
+    catch (err) {
+      console.error(err)
     }
   }
 
@@ -34,7 +54,10 @@ function App() {
   }
 
   function onRightClick(e, right) {
-    console.log(right)
+    console.log({
+      code: right.code,
+      log: right.log
+    })
   }
 
   useEffect(() => {
@@ -51,7 +74,8 @@ function App() {
           clientTime: t2.getTime() - t1.getTime(),
           convertTime: t3.getTime() - t2.getTime()
         });
-        setRights(_rights);
+        setAllRights(_rights);
+        setUncertainRights(_rights);
 
         let t4 = new Date();
         let _fields = RightModel.getPopularFields(_rights);
@@ -72,36 +96,39 @@ function App() {
     <div className="App">
       <header className="scroll">
         {
-          rights?.map((right, i) => <span key={i}>
+          uncertainRights?.map((right, i) => <span className='right' key={i} onClick={(e) => onRightClick(e, right)}>
             {right.title}
           </span>)
         }
       </header>
       <main>
         <div>
-          <strong>Privileged</strong><br />
+          <strong className='center'>זכאי</strong><br />
           <div className='scroll'>
             {
-              privilegedRights?.map((right, i) => <span key={i} onClick={(e) => { onRightClick(e, right) }} >
+              entitledRights?.map((right, i) => <span className='right' key={i} onClick={(e) => { onRightClick(e, right) }} >
                 {right.title}
               </span>)
             }
           </div>
         </div>
         <div>
-          <strong>Person</strong><br />
-          <textarea onChange={onPersonChange}></textarea><br />
+          <strong className='center'>לא זכאי</strong><br />
+          <div className='scroll'>
+            {
+              notEntitledRights?.map((right, i) => <span className='right' key={i} onClick={(e) => { onRightClick(e, right) }} >
+                {right.title}
+              </span>)
+            }
+          </div>
+        </div>
+        <div>
+          <strong className='center'>פרטים אישיים</strong><br />
+          <textarea
+            // value={JSON.stringify(_person, null, 2)}
+            onChange={onPersonChange}
+          ></textarea><br />
           <button onClick={sortRights}>Play</button>
-        </div>
-        <div>
-          <strong>Not Privileged</strong><br />
-          <div className='scroll'>
-            {
-              notPrivilegedRights?.map((right, i) => <span key={i} onClick={(e) => { onRightClick(e, right) }} >
-                {right.title}
-              </span>)
-            }
-          </div>
         </div>
       </main>
       <footer>

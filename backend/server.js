@@ -8,15 +8,21 @@ const dbo = require("./dbo")
 
 const app = express();
 
-app.use(cors());
-app.use(express.json());
-app.get("/rights", async (req, res) => {
-	let t1 = new Date();
+async function getRights() {
 	let mongoClient = await dbo.mongoClient();
     let db = mongoClient.db("rights-engine");
     let collection = db.collection("rights");
 	let rights = await collection.find().toArray();
 	mongoClient.close(true);
+	return rights;
+}
+
+app.use(cors());
+app.use(express.json());
+app.get("/rights", async (req, res) => {
+	let t1 = new Date();
+	let rights = require("./data/rights.json");
+	//let rights = await getRights();
 	let t2 = new Date();
 	let diff = t2.getTime() - t1.getTime();
     console.log("rights:", rights.length, "time:", diff);

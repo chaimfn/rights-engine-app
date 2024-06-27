@@ -1,6 +1,7 @@
 [
     {
         "origincode": 1329,
+        "code": 1329,
         "title": "קצבת אזרח ותיק מגיל פרישה עד גיל 70",
         "rule": {
             "condition": "&&",
@@ -908,21 +909,20 @@
     },
     {
         "origincode": 1966,
+        "code": 1966,
         "title": "דיור ציבורי למקבלי קצבת נכות נשואים או ידועים בציבור",
         "rule": {
             "condition": "&&",
             "rules": [
                 {
-                    "field": "maritalStatus",
+                    "field": "marritalStatus",
                     "operator": "==",
                     "value": "married"
                 },
                 {
                     "field": "knownRights",
                     "operator": "contains",
-                    "value": [
-                        1947
-                    ]
+                    "value": 1947
                 },
                 {
                     "field": "earnInabilityDegree",
@@ -988,9 +988,7 @@
                                 {
                                     "field": "spouseKnownRights",
                                     "operator": "contains",
-                                    "value": [
-                                        1947
-                                    ]
+                                    "value": 1947
                                 },
                                 {
                                     "field": "spouseEarnInabilityDegree",
@@ -1010,9 +1008,7 @@
                                 {
                                     "field": "spouseKnownRights",
                                     "operator": "contains",
-                                    "value": [
-                                        1947
-                                    ]
+                                    "value": 1947
                                 },
                                 {
                                     "field": "spouseEarnInabilityDegree",
@@ -1032,9 +1028,7 @@
                                 {
                                     "field": "knownRights",
                                     "operator": "contains",
-                                    "value": [
-                                        2291
-                                    ]
+                                    "value": 2291
                                 },
                                 {
                                     "field": "passingsAndChildrenUnder18AgeNumber",
@@ -1043,7 +1037,7 @@
                                 },
                                 {
                                     "field": "allowanceForDependents",
-                                    "operator": "contains",
+                                    "operator": "in",
                                     "value": [
                                         "spouse",
                                         "spouseAndChildren"
