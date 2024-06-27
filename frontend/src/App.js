@@ -7,6 +7,22 @@ function App() {
   const [privilegedRights, setPrivilegedRights] = useState(null);
   const [notPrivilegedRights, setnotPrivilegedRights] = useState(null);
   const [fields, setFields] = useState(null);
+  const [txtarea, setTextarea] = useState(null);
+
+  function sortRights(e) {
+    try {
+      let person = JSON.parse(txtarea);
+      console.log(person)
+    }
+    catch(err) {
+      console.error("failed to parse Person", err)
+    }
+  }
+
+  function onPersonChange(e) {
+    let txt = e.target.value;
+    setTextarea(txt)
+  }
 
   useEffect(() => {
     let t1 = new Date();
@@ -41,7 +57,7 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="scroll">
         {
           rights?.map((right, i) => <span key={i}>
             {right.title}
@@ -49,7 +65,19 @@ function App() {
         }
       </header>
       <main>
-
+        <div>
+          <strong>Privileged</strong><br />
+          <div className='scroll'>Hi</div>
+        </div>
+        <div>
+          <strong>Person</strong><br />
+          <textarea onChange={onPersonChange}></textarea><br />
+          <button onClick={sortRights}>Play</button>
+        </div>
+        <div>
+          <strong>Not privileged</strong><br />
+          <div className='scroll'>Hi</div>
+        </div>
       </main>
       <footer>
         <pre>

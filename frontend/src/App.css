@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
   padding: 0%;
@@ -10,14 +11,17 @@ html, body {
   /* text-align: center; */
 }
 
-header {
-  height: 100px;
-  border: solid 1px blue;
+.scroll {
   overflow: hidden;
-  overflow-y: scroll; 
+  overflow-y: scroll;
 }
 
-header > span {
+header {
+  height: 100px;
+  border-bottom: solid 1px blue;
+}
+
+header>span {
   display: inline-block;
   font-size: x-small;
   border: solid 1px;
@@ -27,11 +31,31 @@ header > span {
 
 main {
   height: 360px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* fraction*/
+}
+
+main>div {
+  border-right: solid 1px brown;
+}
+
+main>div > textarea {
+  height: 300px;
+  width: 98%;
+}
+
+main>div:last-child {
+  border-right: 0px;
+}
+
+footer {
+  border-top: solid 1px green;
+  height: 85px;
 }
 
 footer pre {
   font-size: small;
-  white-space:pre-wrap; 
-  word-wrap:break-word;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
-
