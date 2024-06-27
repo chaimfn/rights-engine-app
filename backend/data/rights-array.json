@@ -1,0 +1,1064 @@
+[
+    {
+        "origincode": 1329,
+        "title": "קצבת אזרח ותיק מגיל פרישה עד גיל 70",
+        "rule": {
+            "condition": "&&",
+            "rules": [
+                {
+                    "field": "civilStatus",
+                    "operator": "==",
+                    "value": "citizen"
+                },
+                {
+                    "condition": "||",
+                    "rules": [
+                        {
+                            "condition": "&&",
+                            "rules": [
+                                {
+                                    "field": "gender",
+                                    "operator": "==",
+                                    "value": "male"
+                                },
+                                {
+                                    "field": "age",
+                                    "operator": ">=",
+                                    "value": 67
+                                }
+                            ]
+                        },
+                        {
+                            "condition": "&&",
+                            "rules": [
+                                {
+                                    "field": "gender",
+                                    "operator": "==",
+                                    "value": "female"
+                                },
+                                {
+                                    "field": "age",
+                                    "operator": ">=",
+                                    "value": 62
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "condition": "&&",
+                    "rules": [
+                        {
+                            "condition": "||",
+                            "rules": [
+                                {
+                                    "condition": "&&",
+                                    "rules": [
+                                        {
+                                            "field": "gender",
+                                            "operator": "==",
+                                            "value": "male"
+                                        },
+                                        {
+                                            "field": "birthCountry",
+                                            "operator": "==",
+                                            "value": "israel"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "condition": "&&",
+                                    "rules": [
+                                        {
+                                            "field": "gender",
+                                            "operator": "==",
+                                            "value": "female"
+                                        },
+                                        {
+                                            "field": "marritalStatus",
+                                            "operator": "in",
+                                            "value": [
+                                                "divorced",
+                                                "abandoned"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "condition": "&&",
+                                    "rules": [
+                                        {
+                                            "field": "gender",
+                                            "operator": "==",
+                                            "value": "female"
+                                        },
+                                        {
+                                            "field": "marritalStatus",
+                                            "operator": "in",
+                                            "value": [
+                                                "widowhood"
+                                            ]
+                                        },
+                                        {
+                                            "field": "knownRights",
+                                            "operator": "notAnyIn",
+                                            "value": [
+                                                1332,
+                                                1951
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "condition": "&&",
+                                    "rules": [
+                                        {
+                                            "field": "gender",
+                                            "operator": "==",
+                                            "value": "female"
+                                        },
+                                        {
+                                            "field": "marritalStatus",
+                                            "operator": "in",
+                                            "value": [
+                                                "married",
+                                                "knownInPublic",
+                                                "separated"
+                                            ]
+                                        },
+                                        {
+                                            "field": "spouseCivilStatus",
+                                            "operator": "==",
+                                            "value": "citizen"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "condition": "&&",
+                                    "rules": [
+                                        {
+                                            "field": "gender",
+                                            "operator": "==",
+                                            "value": "female"
+                                        },
+                                        {
+                                            "field": "marritalStatus",
+                                            "operator": "==",
+                                            "value": "single"
+                                        },
+                                        {
+                                            "field": "socialSecurityPayer",
+                                            "operator": "==",
+                                            "value": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "field": "socialSecurityPayer",
+                                    "operator": "==",
+                                    "value": true
+                                }
+                            ]
+                        },
+                        {
+                            "condition": "||",
+                            "rules": [
+                                {
+                                    "condition": "&&",
+                                    "rules": [
+                                        {
+                                            "field": "marritalStatus",
+                                            "operator": "==",
+                                            "value": "single"
+                                        },
+                                        {
+                                            "field": "workIncome",
+                                            "operator": "<=",
+                                            "value": 12638
+                                        },
+                                        {
+                                            "field": "otherIncome",
+                                            "operator": "==",
+                                            "value": 0
+                                        }
+                                    ]
+                                },
+                                {
+                                    "condition": "&&",
+                                    "rules": [
+                                        {
+                                            "field": "marritalStatus",
+                                            "operator": "==",
+                                            "value": "single"
+                                        },
+                                        {
+                                            "field": "workIncome",
+                                            "operator": "==",
+                                            "value": 0
+                                        },
+                                        {
+                                            "field": "otherIncome",
+                                            "operator": "<=",
+                                            "value": 30077
+                                        }
+                                    ]
+                                },
+                                {
+                                    "condition": "&&",
+                                    "rules": [
+                                        {
+                                            "field": "marritalStatus",
+                                            "operator": "==",
+                                            "value": "single"
+                                        },
+                                        {
+                                            "field": "workIncome",
+                                            "operator": "<=",
+                                            "value": 12638
+                                        },
+                                        {
+                                            "field": "totalIncome",
+                                            "operator": "<=",
+                                            "value": 30077
+                                        }
+                                    ]
+                                },
+                                {
+                                    "condition": "&&",
+                                    "rules": [
+                                        {
+                                            "field": "marritalStatus",
+                                            "operator": "==",
+                                            "value": "married"
+                                        },
+                                        {
+                                            "field": "workIncome",
+                                            "operator": "<=",
+                                            "value": 17657
+                                        },
+                                        {
+                                            "field": "otherIncome",
+                                            "operator": "==",
+                                            "value": 0
+                                        },
+                                        {
+                                            "condition": "||",
+                                            "rules": [
+                                                {
+                                                    "condition": "&&",
+                                                    "rules": [
+                                                        {
+                                                            "field": "spouseGender",
+                                                            "operator": "==",
+                                                            "value": "male"
+                                                        },
+                                                        {
+                                                            "field": "age",
+                                                            "operator": ">=",
+                                                            "value": 67
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "condition": "&&",
+                                                    "rules": [
+                                                        {
+                                                            "field": "spouseGender",
+                                                            "operator": "==",
+                                                            "value": "female"
+                                                        },
+                                                        {
+                                                            "field": "age",
+                                                            "operator": ">=",
+                                                            "value": 62
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "condition": "&&",
+                                    "rules": [
+                                        {
+                                            "field": "marritalStatus",
+                                            "operator": "==",
+                                            "value": "married"
+                                        },
+                                        {
+                                            "field": "workIncome",
+                                            "operator": "<=",
+                                            "value": 17657
+                                        },
+                                        {
+                                            "field": "otherIncome",
+                                            "operator": "==",
+                                            "value": 0
+                                        },
+                                        {
+                                            "condition": "||",
+                                            "rules": [
+                                                {
+                                                    "condition": "&&",
+                                                    "rules": [
+                                                        {
+                                                            "field": "spouseGender",
+                                                            "operator": "==",
+                                                            "value": "male"
+                                                        },
+                                                        {
+                                                            "field": "age",
+                                                            "operator": ">=",
+                                                            "value": 67
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "condition": "&&",
+                                                    "rules": [
+                                                        {
+                                                            "field": "spouseGender",
+                                                            "operator": "==",
+                                                            "value": "female"
+                                                        },
+                                                        {
+                                                            "field": "age",
+                                                            "operator": ">=",
+                                                            "value": 62
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "field": "spouseTotalIncome",
+                                            "operator": "<=",
+                                            "value": 6766
+                                        }
+                                    ]
+                                },
+                                {
+                                    "condition": "&&",
+                                    "rules": [
+                                        {
+                                            "field": "marritalStatus",
+                                            "operator": "==",
+                                            "value": "married"
+                                        },
+                                        {
+                                            "field": "workIncome",
+                                            "operator": "<=",
+                                            "value": 12638
+                                        },
+                                        {
+                                            "field": "otherIncome",
+                                            "operator": "==",
+                                            "value": 0
+                                        },
+                                        {
+                                            "field": "spouseTotalIncome",
+                                            "operator": "<=",
+                                            "value": 6766
+                                        },
+                                        {
+                                            "condition": "||",
+                                            "rules": [
+                                                {
+                                                    "condition": "&&",
+                                                    "rules": [
+                                                        {
+                                                            "field": "spouseGender",
+                                                            "operator": "==",
+                                                            "value": "male"
+                                                        },
+                                                        {
+                                                            "field": "age",
+                                                            "operator": ">=",
+                                                            "value": 67
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "condition": "&&",
+                                                    "rules": [
+                                                        {
+                                                            "field": "spouseGender",
+                                                            "operator": "==",
+                                                            "value": "female"
+                                                        },
+                                                        {
+                                                            "field": "age",
+                                                            "operator": ">=",
+                                                            "value": 62
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "condition": "&&",
+                                    "rules": [
+                                        {
+                                            "field": "marritalStatus",
+                                            "operator": "==",
+                                            "value": "married"
+                                        },
+                                        {
+                                            "field": "workIncome",
+                                            "operator": "==",
+                                            "value": 0
+                                        },
+                                        {
+                                            "field": "otherIncome",
+                                            "operator": "<=",
+                                            "value": 40905
+                                        },
+                                        {
+                                            "field": "spouseKnownRights",
+                                            "operator": "notAnyIn",
+                                            "value": [
+                                                1706,
+                                                2465,
+                                                1698
+                                            ]
+                                        },
+                                        {
+                                            "condition": "||",
+                                            "rules": [
+                                                {
+                                                    "condition": "&&",
+                                                    "rules": [
+                                                        {
+                                                            "field": "spouseGender",
+                                                            "operator": "==",
+                                                            "value": "male"
+                                                        },
+                                                        {
+                                                            "field": "age",
+                                                            "operator": ">=",
+                                                            "value": 67
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "condition": "&&",
+                                                    "rules": [
+                                                        {
+                                                            "field": "spouseGender",
+                                                            "operator": "==",
+                                                            "value": "female"
+                                                        },
+                                                        {
+                                                            "field": "age",
+                                                            "operator": ">=",
+                                                            "value": 62
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "condition": "&&",
+                                    "rules": [
+                                        {
+                                            "field": "marritalStatus",
+                                            "operator": "==",
+                                            "value": "married"
+                                        },
+                                        {
+                                            "field": "workIncome",
+                                            "operator": "==",
+                                            "value": 0
+                                        },
+                                        {
+                                            "field": "otherIncome",
+                                            "operator": "<=",
+                                            "value": 38792
+                                        },
+                                        {
+                                            "field": "spouseKnownRights",
+                                            "operator": "anyIn",
+                                            "value": [
+                                                1706,
+                                                2465,
+                                                1698
+                                            ]
+                                        },
+                                        {
+                                            "condition": "||",
+                                            "rules": [
+                                                {
+                                                    "condition": "&&",
+                                                    "rules": [
+                                                        {
+                                                            "field": "spouseGender",
+                                                            "operator": "==",
+                                                            "value": "male"
+                                                        },
+                                                        {
+                                                            "field": "age",
+                                                            "operator": ">=",
+                                                            "value": 67
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "condition": "&&",
+                                                    "rules": [
+                                                        {
+                                                            "field": "spouseGender",
+                                                            "operator": "==",
+                                                            "value": "female"
+                                                        },
+                                                        {
+                                                            "field": "age",
+                                                            "operator": ">=",
+                                                            "value": 62
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "condition": "&&",
+                                    "rules": [
+                                        {
+                                            "field": "marritalStatus",
+                                            "operator": "==",
+                                            "value": "married"
+                                        },
+                                        {
+                                            "field": "workIncome",
+                                            "operator": "==",
+                                            "value": 0
+                                        },
+                                        {
+                                            "field": "otherIncome",
+                                            "operator": "<=",
+                                            "value": 40905
+                                        },
+                                        {
+                                            "field": "spouseKnownRights",
+                                            "operator": "notAnyIn",
+                                            "value": [
+                                                1706,
+                                                2465,
+                                                1698
+                                            ]
+                                        },
+                                        {
+                                            "field": "spouseTotalIncome",
+                                            "operator": "<=",
+                                            "value": 6766
+                                        },
+                                        {
+                                            "condition": "||",
+                                            "rules": [
+                                                {
+                                                    "condition": "&&",
+                                                    "rules": [
+                                                        {
+                                                            "field": "spouseGender",
+                                                            "operator": "==",
+                                                            "value": "male"
+                                                        },
+                                                        {
+                                                            "field": "age",
+                                                            "operator": ">=",
+                                                            "value": 67
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "condition": "&&",
+                                                    "rules": [
+                                                        {
+                                                            "field": "spouseGender",
+                                                            "operator": "==",
+                                                            "value": "female"
+                                                        },
+                                                        {
+                                                            "field": "age",
+                                                            "operator": ">=",
+                                                            "value": 62
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "condition": "&&",
+                                    "rules": [
+                                        {
+                                            "field": "marritalStatus",
+                                            "operator": "==",
+                                            "value": "married"
+                                        },
+                                        {
+                                            "field": "workIncome",
+                                            "operator": "==",
+                                            "value": 0
+                                        },
+                                        {
+                                            "field": "otherIncome",
+                                            "operator": "<=",
+                                            "value": 38792
+                                        },
+                                        {
+                                            "field": "spouseKnownRights",
+                                            "operator": "anyIn",
+                                            "value": [
+                                                1706,
+                                                2465,
+                                                1698
+                                            ]
+                                        },
+                                        {
+                                            "field": "spouseTotalIncome",
+                                            "operator": "<=",
+                                            "value": 6766
+                                        },
+                                        {
+                                            "condition": "||",
+                                            "rules": [
+                                                {
+                                                    "condition": "&&",
+                                                    "rules": [
+                                                        {
+                                                            "field": "spouseGender",
+                                                            "operator": "==",
+                                                            "value": "male"
+                                                        },
+                                                        {
+                                                            "field": "age",
+                                                            "operator": ">=",
+                                                            "value": 67
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "condition": "&&",
+                                                    "rules": [
+                                                        {
+                                                            "field": "spouseGender",
+                                                            "operator": "==",
+                                                            "value": "female"
+                                                        },
+                                                        {
+                                                            "field": "age",
+                                                            "operator": ">=",
+                                                            "value": 62
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "condition": "&&",
+                                    "rules": [
+                                        {
+                                            "field": "marritalStatus",
+                                            "operator": "==",
+                                            "value": "married"
+                                        },
+                                        {
+                                            "field": "workIncome",
+                                            "operator": "==",
+                                            "value": 0
+                                        },
+                                        {
+                                            "field": "otherIncome",
+                                            "operator": "<=",
+                                            "value": 30077
+                                        },
+                                        {
+                                            "field": "spouseTotalIncome",
+                                            "operator": "<=",
+                                            "value": 6766
+                                        },
+                                        {
+                                            "condition": "||",
+                                            "rules": [
+                                                {
+                                                    "condition": "&&",
+                                                    "rules": [
+                                                        {
+                                                            "field": "spouseGender",
+                                                            "operator": "==",
+                                                            "value": "male"
+                                                        },
+                                                        {
+                                                            "field": "age",
+                                                            "operator": ">=",
+                                                            "value": 67
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "condition": "&&",
+                                                    "rules": [
+                                                        {
+                                                            "field": "spouseGender",
+                                                            "operator": "==",
+                                                            "value": "female"
+                                                        },
+                                                        {
+                                                            "field": "age",
+                                                            "operator": ">=",
+                                                            "value": 62
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "condition": "&&",
+                                    "rules": [
+                                        {
+                                            "field": "marritalStatus",
+                                            "operator": "==",
+                                            "value": "married"
+                                        },
+                                        {
+                                            "field": "workIncome",
+                                            "operator": "<=",
+                                            "value": 17657
+                                        },
+                                        {
+                                            "field": "totalIncome",
+                                            "operator": "<=",
+                                            "value": 40905
+                                        },
+                                        {
+                                            "condition": "||",
+                                            "rules": [
+                                                {
+                                                    "condition": "&&",
+                                                    "rules": [
+                                                        {
+                                                            "field": "spouseGender",
+                                                            "operator": "==",
+                                                            "value": "male"
+                                                        },
+                                                        {
+                                                            "field": "age",
+                                                            "operator": ">=",
+                                                            "value": 67
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "condition": "&&",
+                                                    "rules": [
+                                                        {
+                                                            "field": "spouseGender",
+                                                            "operator": "==",
+                                                            "value": "female"
+                                                        },
+                                                        {
+                                                            "field": "age",
+                                                            "operator": ">=",
+                                                            "value": 62
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "condition": "&&",
+                                    "rules": [
+                                        {
+                                            "field": "marritalStatus",
+                                            "operator": "==",
+                                            "value": "married"
+                                        },
+                                        {
+                                            "field": "workIncome",
+                                            "operator": "<=",
+                                            "value": 17516
+                                        },
+                                        {
+                                            "field": "totalIncome",
+                                            "operator": "<=",
+                                            "value": 40905
+                                        },
+                                        {
+                                            "field": "spouseTotalIncome",
+                                            "operator": "<=",
+                                            "value": 6766
+                                        },
+                                        {
+                                            "condition": "||",
+                                            "rules": [
+                                                {
+                                                    "condition": "&&",
+                                                    "rules": [
+                                                        {
+                                                            "field": "spouseGender",
+                                                            "operator": "==",
+                                                            "value": "male"
+                                                        },
+                                                        {
+                                                            "field": "age",
+                                                            "operator": ">=",
+                                                            "value": 67
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "condition": "&&",
+                                                    "rules": [
+                                                        {
+                                                            "field": "spouseGender",
+                                                            "operator": "==",
+                                                            "value": "female"
+                                                        },
+                                                        {
+                                                            "field": "age",
+                                                            "operator": ">=",
+                                                            "value": 62
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "condition": "&&",
+                                    "rules": [
+                                        {
+                                            "field": "marritalStatus",
+                                            "operator": "==",
+                                            "value": "married"
+                                        },
+                                        {
+                                            "field": "workIncome",
+                                            "operator": "<=",
+                                            "value": 12638
+                                        },
+                                        {
+                                            "field": "totalIncome",
+                                            "operator": "<=",
+                                            "value": 30077
+                                        },
+                                        {
+                                            "field": "spouseTotalIncome",
+                                            "operator": "<=",
+                                            "value": 6766
+                                        },
+                                        {
+                                            "condition": "||",
+                                            "rules": [
+                                                {
+                                                    "condition": "&&",
+                                                    "rules": [
+                                                        {
+                                                            "field": "spouseGender",
+                                                            "operator": "==",
+                                                            "value": "male"
+                                                        },
+                                                        {
+                                                            "field": "age",
+                                                            "operator": ">=",
+                                                            "value": 67
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "condition": "&&",
+                                                    "rules": [
+                                                        {
+                                                            "field": "spouseGender",
+                                                            "operator": "==",
+                                                            "value": "female"
+                                                        },
+                                                        {
+                                                            "field": "age",
+                                                            "operator": ">=",
+                                                            "value": 62
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "origincode": 1966,
+        "title": "דיור ציבורי למקבלי קצבת נכות נשואים או ידועים בציבור",
+        "rule": {
+            "condition": "&&",
+            "rules": [
+                {
+                    "field": "maritalStatus",
+                    "operator": "==",
+                    "value": "married"
+                },
+                {
+                    "field": "knownRights",
+                    "operator": "contains",
+                    "value": [
+                        1947
+                    ]
+                },
+                {
+                    "field": "earnInabilityDegree",
+                    "operator": ">=",
+                    "value": "75"
+                },
+                {
+                    "field": "ownedProperty",
+                    "operator": "==",
+                    "value": false
+                },
+                {
+                    "field": "residenceType",
+                    "operator": "!=",
+                    "value": "ownedProperty"
+                },
+                {
+                    "condition": "||",
+                    "rules": [
+                        {
+                            "condition": "&&",
+                            "rules": [
+                                {
+                                    "field": "passingsAndChildrenUnder18AgeNumber",
+                                    "operator": ">=",
+                                    "value": 2
+                                },
+                                {
+                                    "field": "allowanceForDependents",
+                                    "operator": "==",
+                                    "value": "spouseAndChildren"
+                                }
+                            ]
+                        },
+                        {
+                            "condition": "&&",
+                            "rules": [
+                                {
+                                    "field": "passingsAndChildrenUnder21AgeNumber",
+                                    "operator": ">=",
+                                    "value": 2
+                                },
+                                {
+                                    "field": "allowanceForDependents",
+                                    "operator": "==",
+                                    "value": "spouseAndChildren"
+                                }
+                            ]
+                        },
+                        {
+                            "condition": "&&",
+                            "rules": [
+                                {
+                                    "field": "passingsAndChildrenUnder21AgeNumber",
+                                    "operator": ">=",
+                                    "value": 1
+                                },
+                                {
+                                    "field": "allowanceForDependents",
+                                    "operator": "==",
+                                    "value": "children"
+                                },
+                                {
+                                    "field": "spouseKnownRights",
+                                    "operator": "contains",
+                                    "value": [
+                                        1947
+                                    ]
+                                },
+                                {
+                                    "field": "spouseEarnInabilityDegree",
+                                    "operator": ">=",
+                                    "value": "75"
+                                }
+                            ]
+                        },
+                        {
+                            "condition": "&&",
+                            "rules": [
+                                {
+                                    "field": "passingsAndChildrenUnder21AgeNumber",
+                                    "operator": "==",
+                                    "value": 0
+                                },
+                                {
+                                    "field": "spouseKnownRights",
+                                    "operator": "contains",
+                                    "value": [
+                                        1947
+                                    ]
+                                },
+                                {
+                                    "field": "spouseEarnInabilityDegree",
+                                    "operator": ">=",
+                                    "value": "75"
+                                },
+                                {
+                                    "field": "marriageYears",
+                                    "operator": ">=",
+                                    "value": 5
+                                }
+                            ]
+                        },
+                        {
+                            "condition": "&&",
+                            "rules": [
+                                {
+                                    "field": "knownRights",
+                                    "operator": "contains",
+                                    "value": [
+                                        2291
+                                    ]
+                                },
+                                {
+                                    "field": "passingsAndChildrenUnder18AgeNumber",
+                                    "operator": ">=",
+                                    "value": 1
+                                },
+                                {
+                                    "field": "allowanceForDependents",
+                                    "operator": "contains",
+                                    "value": [
+                                        "spouse",
+                                        "spouseAndChildren"
+                                    ]
+                                },
+                                {
+                                    "field": "disabledChildAllowancePercentage",
+                                    "operator": ">=",
+                                    "value": 100
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+]

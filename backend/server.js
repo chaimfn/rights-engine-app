@@ -1,33 +1,28 @@
-// Loads the configuration from config.env to process.env
 require("dotenv").config();
+
+const PORT = process.env.PORT || 5000;
 
 const express = require("express");
 const cors = require("cors");
-// get MongoDB driver connection
-const dbo = require("./db/");
+const dbo = require("./dbo")
 
-const PORT = process.env.PORT || 5000;
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use(require("./routes"));
-
-// Global error handling
-app.use(function (err, _req, res) {
-	console.error(err.stack);
-	res.status(500).send('Something broke!');
+app.get("/rights", async (req, res) => {
+	let t1 = new Date();
+	let mongoClient = await dbo.mongoClient();
+    let db = mongoClient.db("rights-engine");
+    let collection = db.collection("rights");
+	let rights = await collection.find().toArray();
+	mongoClient.close(true);
+	let t2 = new Date();
+	let diff = t2.getTime() - t1.getTime();
+    console.log("rights:", rights.length, "time:", diff);
+	res.status(200).send({rights, serverTime: diff});
+})
+app.listen(PORT, () => {
+	console.log(`Server is running on port: ${PORT}`);
 });
 
-// perform a database connection when the server starts
-dbo.connectToServer(function (err) {
-	if (err) {
-		console.error(err);
-		process.exit();
-	}
-
-	// start the Express server
-	app.listen(PORT, () => {
-		console.log(`Server is running on port: ${PORT}`);
-	});
-});
