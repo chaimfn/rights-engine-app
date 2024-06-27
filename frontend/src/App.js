@@ -5,16 +5,25 @@ import './App.css';
 function App() {
   const [rights, setRights] = useState(null);
   const [privilegedRights, setPrivilegedRights] = useState(null);
-  const [notPrivilegedRights, setnotPrivilegedRights] = useState(null);
+  const [notPrivilegedRights, setNotPrivilegedRights] = useState(null);
   const [fields, setFields] = useState(null);
   const [txtarea, setTextarea] = useState(null);
 
   function sortRights(e) {
     try {
       let person = JSON.parse(txtarea);
-      console.log(person)
+      console.log(person);
+      rights?.forEach(right => {
+        console.log(right.isMatched(person))
+      });
+      let privileged = rights.filter(right => right.isMatched(person).isMatched);
+      console.log(privileged)
+      setPrivilegedRights(privileged);
+      let notPrivileged = rights.filter(right => right.isMatched(person).isMatched == false);
+      console.log(notPrivileged)
+      setNotPrivilegedRights(notPrivileged);
     }
-    catch(err) {
+    catch (err) {
       console.error("failed to parse Person", err)
     }
   }
@@ -22,6 +31,10 @@ function App() {
   function onPersonChange(e) {
     let txt = e.target.value;
     setTextarea(txt)
+  }
+
+  function onRightClick(e, right) {
+    console.log(right)
   }
 
   useEffect(() => {
@@ -67,7 +80,13 @@ function App() {
       <main>
         <div>
           <strong>Privileged</strong><br />
-          <div className='scroll'>Hi</div>
+          <div className='scroll'>
+            {
+              privilegedRights?.map((right, i) => <span key={i} onClick={(e) => { onRightClick(e, right) }} >
+                {right.title}
+              </span>)
+            }
+          </div>
         </div>
         <div>
           <strong>Person</strong><br />
@@ -75,8 +94,14 @@ function App() {
           <button onClick={sortRights}>Play</button>
         </div>
         <div>
-          <strong>Not privileged</strong><br />
-          <div className='scroll'>Hi</div>
+          <strong>Not Privileged</strong><br />
+          <div className='scroll'>
+            {
+              notPrivilegedRights?.map((right, i) => <span key={i} onClick={(e) => { onRightClick(e, right) }} >
+                {right.title}
+              </span>)
+            }
+          </div>
         </div>
       </main>
       <footer>
