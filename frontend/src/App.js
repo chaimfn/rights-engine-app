@@ -21,8 +21,8 @@ function App() {
     }
     console.log(person);
     let entitled = [], notEntitled = [], uncertain = [];
+    let t1 = new Date();
     try {
-      let t1 = new Date();
       allRights.forEach(right => {
         let matched = right.isMatched(person);
         right.log = matched.log;
@@ -32,20 +32,29 @@ function App() {
           notEntitled.push(right);
         else uncertain.push(right)
       });
-      let t2 = new Date();
-      console.log("entitled:", entitled?.length);
-      console.log("notEntitled:", notEntitled?.length);
-      console.log("uncertain:", uncertain.length)
-
-
-      setEntitledRights(entitled);
-      setNotEntitledRights(notEntitled);
-      setUncertainRights(uncertain);
-      console.log("sortTime:", t2.getTime() - t1.getTime());
     }
     catch (err) {
       console.error(err)
     }
+    let t2 = new Date();
+    console.log("entitled:", entitled?.length);
+    console.log("notEntitled:", notEntitled?.length);
+    console.log("uncertain:", uncertain.length)
+
+
+    setEntitledRights(entitled);
+    setNotEntitledRights(notEntitled);
+    setUncertainRights(uncertain);
+    console.log("sortTime:", t2.getTime() - t1.getTime());
+    let t3 = new Date();
+    let _fields = RightModel.getPopularFields(uncertain);
+    let t4 = new Date();
+    setFields(_fields)
+    console.log({
+      popularFields: _fields.length,
+      time: t4.getTime() - t3.getTime()
+    })
+
   }
 
   function onPersonChange(e) {
