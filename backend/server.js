@@ -26,9 +26,9 @@ app.use(cors());
 app.use(express.json());
 app.get("/rights", async (req, res) => {
 	let t1 = new Date();
-	let rights = MODE == "production" ?
-		await getFromDB() :
-		await getFromFile();
+	let rights = MODE == "dev" ?
+		await getFromFile() :
+		await getFromDB();
 	let t2 = new Date();
 	let diff = t2.getTime() - t1.getTime();
 	let resBody = { rights, mode: MODE, serverTime: diff }
