@@ -4,6 +4,7 @@ body {
   width: 100%;
   padding: 0%;
   margin: 0%;
+  direction: rtl;
 }
 
 
@@ -17,7 +18,7 @@ body {
 }
 
 header {
-  height: 100px;
+  height: 70px;
   border-bottom: solid 1px blue;
 }
 
@@ -30,7 +31,7 @@ header {
 }
 
 main {
-  height: 345px;
+  height: 390px;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -38,32 +39,34 @@ main {
 }
 
 main>div {
-  border-right: solid 1px brown;
+  border-left: solid 1px brown;
 }
 
 .center {
   display: inline-block;
-  border: solid 1px;
   width: 100%;
   text-align: center;
 }
 
 main>div>.scroll {
-  height: 322px;
+  height: 367px;
 }
 
 main>div>textarea {
-  height: 288px;
+  height: 330px;
   width: 98%;
+  direction: ltr;
 }
 
 main>div:last-child {
-  border-right: 0px;
+  border-left: 0px;
 }
 
 footer {
   border-top: solid 1px green;
   height: 85px;
+  direction: ltr;
+  text-align: center;
 }
 
 footer pre {

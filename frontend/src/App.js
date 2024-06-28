@@ -112,7 +112,17 @@ function App() {
       </header>
       <main>
         <div>
-          <strong className='center'>זכאי</strong><br />
+          <strong className='center'>פרטים אישיים</strong>
+          <textarea
+            // value={JSON.stringify(_person, null, 2)}
+            onChange={onPersonChange}
+          ></textarea>
+          <div className='center'>
+            <button onClick={sortRights}>חפש זכויות</button>
+          </div>
+        </div>
+        <div>
+          <strong className='center'>זכאי</strong>
           <div className='scroll'>
             {
               entitledRights?.map((right, i) => <span className='right' key={i} onClick={(e) => { onRightClick(e, right) }} >
@@ -122,7 +132,7 @@ function App() {
           </div>
         </div>
         <div>
-          <strong className='center'>לא זכאי</strong><br />
+          <strong className='center'>לא זכאי</strong>
           <div className='scroll'>
             {
               notEntitledRights?.map((right, i) => <span className='right' key={i} onClick={(e) => { onRightClick(e, right) }} >
@@ -130,14 +140,6 @@ function App() {
               </span>)
             }
           </div>
-        </div>
-        <div>
-          <strong className='center'>פרטים אישיים</strong><br />
-          <textarea
-            // value={JSON.stringify(_person, null, 2)}
-            onChange={onPersonChange}
-          ></textarea><br />
-          <button onClick={sortRights}>Play</button>
         </div>
       </main>
       <footer>
