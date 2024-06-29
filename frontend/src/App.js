@@ -116,10 +116,7 @@ function App(props) {
       <main>
         <div>
           <strong className='center'>פרטים אישיים</strong>
-          <textarea
-            // value={txtarea}
-            onChange={onPersonChange}
-          ></textarea>
+          <textarea onChange={onPersonChange}></textarea>
           <div className='center'>
             <button onClick={sortRights}>חפש זכויות</button>
           </div>
