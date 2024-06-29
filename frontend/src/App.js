@@ -3,7 +3,9 @@ import { RightModel } from "rights-engine-core"
 import './App.css';
 import _person from "./person.json"
 
-function App() {
+
+function App(props) {
+  console.log("config:", window.config)
   const [allRights, setAllRights] = useState(null);
   const [entitledRights, setEntitledRights] = useState(null);
   const [notEntitledRights, setNotEntitledRights] = useState(null);
@@ -11,13 +13,14 @@ function App() {
   const [fields, setFields] = useState(null);
   const [txtarea, setTextarea] = useState(null);
 
+
   function sortRights(e) {
     let person = {}
     try {
       person = JSON.parse(txtarea);
     }
     catch (err) {
-      console.error("failed to parse Person", err)
+      console.error("failed to parse txtaria to Person", err)
     }
     console.log(person);
     let entitled = [], notEntitled = [], uncertain = [];
@@ -71,7 +74,7 @@ function App() {
 
   useEffect(() => {
     let t1 = new Date();
-    fetch("http://localhost:5000/rights")
+    fetch(window.config.backendUrl)
       .then(res => res.json())
       .then(data => {
         let t2 = new Date();
@@ -114,7 +117,7 @@ function App() {
         <div>
           <strong className='center'>פרטים אישיים</strong>
           <textarea
-            // value={JSON.stringify(_person, null, 2)}
+            // value={txtarea}
             onChange={onPersonChange}
           ></textarea>
           <div className='center'>
