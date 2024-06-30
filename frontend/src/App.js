@@ -22,9 +22,6 @@ function App(props) {
       console.error("failed to parse txtaria to Person", err)
     }
 
-
-
-
     let entitled = [], notEntitled = [], uncertain = [];
     let t1 = new Date();
     try {
@@ -76,37 +73,36 @@ function App(props) {
     })
   }
 
-  useEffect(() => {
+  useEffect(async () => {
     let t1 = new Date();
-    fetch(window.config.backendUrl)
-      .then(res => res.json())
-      .then(data => {
-        let t2 = new Date();
-        let _rights = data.rights.map(item => RightModel.convert(item));
-        let t3 = new Date();
-        console.log({
-          rights: data?.rights?.length,
-          serverTime: data?.serverTime,
-          clientTime: t2.getTime() - t1.getTime(),
-          convertTime: t3.getTime() - t2.getTime()
-        });
-        setAllRights(_rights);
-        setUncertainRights(_rights);
-
-        let t4 = new Date();
-        let _fields = RightModel.getPopularFields(_rights);
-        let t5 = new Date();
-        setFields(_fields)
-        console.log({
-          popularFields: _fields.length,
-          time: t5.getTime() - t4.getTime()
-        })
-
+    let _rights = []
+    let t2 = new Date();
+    try {
+      let res = await fetch(window.config.backendUrl);
+      let data = await res?.json();
+      _rights = data?.rights?.map(item => RightModel.convert(item));
+      let t3 = new Date();
+      console.log({
+        rights: _rights?.length,
+        serverTime: data?.serverTime,
+        clientTime: t2.getTime() - t1.getTime(),
+        convertTime: t3.getTime() - t2.getTime()
+      });
+      setAllRights(_rights);
+      setUncertainRights(_rights);
+      let t4 = new Date();
+      let _fields = RightModel.getPopularFields(_rights);
+      let t5 = new Date();
+      setFields(_fields)
+      console.log({
+        popularFields: _fields.length,
+        time: t5.getTime() - t4.getTime()
       })
-      .catch(err => {
-        console.error("Err!", err)
-      })
-  }, [])
+    }
+    catch (err) {
+      console.error("Failed to get data", err)
+    }
+  }, []);
 
   return (
     <div className="App">
