@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { RightModel, Condition } from "rights-engine-core"
 import './App.css';
+import persons from './persons';
 
 
 function App(props) {
@@ -12,10 +13,22 @@ function App(props) {
   const [txtarea, setTextarea] = useState(null);
   const [person, setPerson] = useState(null);
 
+  function setExamplePerson(e, person) {
+    setTextarea(JSON.stringify(person, null, 2));
+  }
 
   function sortRights(e) {
-    console.log(2, person)
-    if (person == null || person == undefined) {
+    console.log(txtarea);
+    let _person = null;
+    try {
+      _person = JSON.parse(txtarea);
+      console.log(1, _person);
+    }
+    catch (err) {
+      return console.error("failed to parse txtaria to Person", err)
+    }
+
+    if (_person == null || _person == undefined) {
       return console.error("person is null/undefined");
     }
 
@@ -23,7 +36,7 @@ function App(props) {
     let t1 = new Date();
     try {
       allRights.forEach(right => {
-        let matched = right.isMatched(person);
+        let matched = right.isMatched(_person);
         right.log = matched.log;
         if (matched.isMatched == true)
           entitled.push(right);
@@ -46,7 +59,7 @@ function App(props) {
       uncertain: uncertain.length,
       sortTime: t2.getTime() - t1.getTime()
     });
-    let exceptFields = Object.keys(person)?.filter(key => person[key] != null);
+    let exceptFields = Object.keys(_person)?.filter(key => _person[key] != null);
     let t3 = new Date();
     let _fields = RightModel.getPopularFields(uncertain, Condition.And, exceptFields);
     let t4 = new Date();
@@ -58,11 +71,10 @@ function App(props) {
 
   }
 
-  function onPersonChange(e) {
+  function onTxtareaChange(e) {
     let txt = e.target.value;
     try {
       let _person = JSON.parse(txt);
-      console.log(1, _person);
       setPerson(_person)
     }
     catch (err) {
@@ -119,7 +131,11 @@ function App(props) {
       <main>
         <div>
           <strong className='center'>פרטים אישיים</strong>
-          <textarea onChange={onPersonChange}></textarea>
+          <div className='person-examples'>
+            <strong>דוגמאות:</strong>
+            {persons?.map((person, i) => <button key={i} title={person?.description} onClick={(e) => setExamplePerson(e, person)}>{person?.name}</button>)}
+          </div>
+          <textarea value={txtarea} onChange={onTxtareaChange}></textarea>
           <div className='center'>
             <button onClick={sortRights}>חפש זכויות</button>
           </div>

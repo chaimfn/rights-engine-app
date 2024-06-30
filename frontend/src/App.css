@@ -52,8 +52,17 @@ main>div>.scroll {
   height: 367px;
 }
 
+.person-examples {
+  padding-bottom: 5px;
+}
+
+.person-examples button {
+  display: inline-block;
+  margin-right: 5px;
+}
+
 main>div>textarea {
-  height: 330px;
+  height: 303px;
   width: 98%;
   direction: ltr;
   font-size: small;
