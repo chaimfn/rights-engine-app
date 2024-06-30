@@ -87,8 +87,8 @@ function App(props) {
         let t3 = new Date();
         let log = {
           rights: _rights?.length,
-          serverTime: data?.serverTime,
-          clientTime: t2.getTime() - t1.getTime(),
+          backendTime: data?.serverTime,
+          frontTime: t2.getTime() - t1.getTime(),
           convertTime: t3.getTime() - t2.getTime()
         };
         console.log(log);
@@ -120,8 +120,8 @@ function App(props) {
         }
       </header>
       <main>
-        <div>
-          <strong className='center'>פרטים אישיים</strong>
+        <div className='center'>
+          <strong style={{marginRight: "10px"}}>פרטים אישיים</strong>
           <div className='person-examples'>
             <strong>דוגמאות:</strong>
             {persons?.map((person, i) => <button key={i} title={person?.description} onClick={(e) => setExamplePerson(e, person)}>{person?.name}</button>)}

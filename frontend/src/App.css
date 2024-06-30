@@ -7,9 +7,7 @@ body {
   direction: rtl;
 }
 
-
 .App {
-  /* text-align: center; */
 }
 
 .scroll {
@@ -31,7 +29,7 @@ header {
 }
 
 main {
-  height: 390px;
+  height: 392px;
   width: 100%;
   display: grid;
   grid-template-columns: 3fr 2fr 2fr;
@@ -49,20 +47,24 @@ main>div {
 }
 
 main>div>.scroll {
-  height: 367px;
+  height: 370px;
 }
 
 .person-examples {
+  display: inline-block;
+  font-size: small;
+  padding-right: 10px;
   padding-bottom: 5px;
 }
 
 .person-examples button {
   display: inline-block;
   margin-right: 5px;
+  font-size: smaller;
 }
 
 main>div>textarea {
-  height: 303px;
+  height: 328px;
   width: 98%;
   direction: ltr;
   font-size: small;
@@ -83,4 +85,11 @@ footer pre {
   font-size: small;
   white-space: pre-wrap;
   word-wrap: break-word;
+}
+
+footer .msg {
+  font-size: small;
+  color: darkcyan;
+  border-top: solid 1px;
+  height: 50px;
 }
