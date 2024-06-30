@@ -50,33 +50,29 @@ function App(props) {
     setEntitledRights(entitled);
     setNotEntitledRights(notEntitled);
     setUncertainRights(uncertain);
-    console.log("sorted:", {
+    let log = {
       entitled: entitled?.length,
       notEntitled: notEntitled?.length,
       uncertain: uncertain.length,
       sortTime: t2.getTime() - t1.getTime()
-    });
+    };
+    console.log(log);
+    alert(JSON.stringify(log, null, 2))
     let exceptFields = Object.keys(_person)?.filter(key => _person[key] != null);
     let t3 = new Date();
     let _fields = RightModel.getPopularFields(uncertain, Condition.And, exceptFields);
     let t4 = new Date();
     setFields(_fields)
-    console.log({
+    log = {
       popularFields: _fields.length,
       time: t4.getTime() - t3.getTime()
-    })
-
+    }
+    console.log(log)
+    alert(JSON.stringify(log, null, 2))
   }
 
   function onTxtareaChange(e) {
     setTextarea(e.target.value)
-  }
-
-  function onRightClick(e, right) {
-    console.log({
-      code: right.code,
-      log: right.log
-    })
   }
 
   useEffect(() => {
@@ -89,22 +85,26 @@ function App(props) {
       .then(data => {
         _rights = data?.rights?.map(item => RightModel.convert(item));
         let t3 = new Date();
-        console.log({
+        let log = {
           rights: _rights?.length,
           serverTime: data?.serverTime,
           clientTime: t2.getTime() - t1.getTime(),
           convertTime: t3.getTime() - t2.getTime()
-        });
+        };
+        console.log(log);
+        alert(JSON.stringify(log, null, 2))
         setAllRights(_rights);
         setUncertainRights(_rights);
         let t4 = new Date();
         let _fields = RightModel.getPopularFields(_rights);
         let t5 = new Date();
         setFields(_fields)
-        console.log({
+        log = {
           popularFields: _fields.length,
           time: t5.getTime() - t4.getTime()
-        })
+        }
+        console.log(log)
+        alert(JSON.stringify(log, null, 2))
       })
       .catch(err => console.error("Failed to get data", err))
   }, []);
