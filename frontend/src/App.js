@@ -4,22 +4,19 @@ import './App.css';
 
 
 function App(props) {
-  console.log("config:", window.config)
   const [allRights, setAllRights] = useState(null);
   const [entitledRights, setEntitledRights] = useState(null);
   const [notEntitledRights, setNotEntitledRights] = useState(null);
   const [uncertainRights, setUncertainRights] = useState(null);
   const [fields, setFields] = useState(null);
   const [txtarea, setTextarea] = useState(null);
+  const [person, setPerson] = useState(null);
 
 
   function sortRights(e) {
-    let person = {}
-    try {
-      person = JSON.parse(txtarea);
-    }
-    catch (err) {
-      console.error("failed to parse txtaria to Person", err)
+    console.log(2, person)
+    if (person == null || person == undefined) {
+      return console.error("person is null/undefined");
     }
 
     let entitled = [], notEntitled = [], uncertain = [];
@@ -63,7 +60,14 @@ function App(props) {
 
   function onPersonChange(e) {
     let txt = e.target.value;
-    setTextarea(txt)
+    try {
+      let _person = JSON.parse(txt);
+      console.log(1, _person);
+      setPerson(_person)
+    }
+    catch (err) {
+      console.warn("failed to parse txtaria to Person", err)
+    }
   }
 
   function onRightClick(e, right) {
@@ -73,35 +77,34 @@ function App(props) {
     })
   }
 
-  useEffect(async () => {
+  useEffect(() => {
     let t1 = new Date();
     let _rights = []
     let t2 = new Date();
-    try {
-      let res = await fetch(window.config.backendUrl);
-      let data = await res?.json();
-      _rights = data?.rights?.map(item => RightModel.convert(item));
-      let t3 = new Date();
-      console.log({
-        rights: _rights?.length,
-        serverTime: data?.serverTime,
-        clientTime: t2.getTime() - t1.getTime(),
-        convertTime: t3.getTime() - t2.getTime()
-      });
-      setAllRights(_rights);
-      setUncertainRights(_rights);
-      let t4 = new Date();
-      let _fields = RightModel.getPopularFields(_rights);
-      let t5 = new Date();
-      setFields(_fields)
-      console.log({
-        popularFields: _fields.length,
-        time: t5.getTime() - t4.getTime()
+
+    fetch(window.config.backendUrl)
+      .then(res => res?.json())
+      .then(data => {
+        _rights = data?.rights?.map(item => RightModel.convert(item));
+        let t3 = new Date();
+        console.log({
+          rights: _rights?.length,
+          serverTime: data?.serverTime,
+          clientTime: t2.getTime() - t1.getTime(),
+          convertTime: t3.getTime() - t2.getTime()
+        });
+        setAllRights(_rights);
+        setUncertainRights(_rights);
+        let t4 = new Date();
+        let _fields = RightModel.getPopularFields(_rights);
+        let t5 = new Date();
+        setFields(_fields)
+        console.log({
+          popularFields: _fields.length,
+          time: t5.getTime() - t4.getTime()
+        })
       })
-    }
-    catch (err) {
-      console.error("Failed to get data", err)
-    }
+      .catch(err => console.error("Failed to get data", err))
   }, []);
 
   return (
