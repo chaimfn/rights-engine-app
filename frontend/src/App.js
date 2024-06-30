@@ -11,18 +11,15 @@ function App(props) {
   const [uncertainRights, setUncertainRights] = useState(null);
   const [fields, setFields] = useState(null);
   const [txtarea, setTextarea] = useState(null);
-  const [person, setPerson] = useState(null);
 
   function setExamplePerson(e, person) {
     setTextarea(JSON.stringify(person, null, 2));
   }
 
   function sortRights(e) {
-    console.log(txtarea);
     let _person = null;
     try {
       _person = JSON.parse(txtarea);
-      console.log(1, _person);
     }
     catch (err) {
       return console.error("failed to parse txtaria to Person", err)
@@ -72,14 +69,7 @@ function App(props) {
   }
 
   function onTxtareaChange(e) {
-    let txt = e.target.value;
-    try {
-      let _person = JSON.parse(txt);
-      setPerson(_person)
-    }
-    catch (err) {
-      console.warn("failed to parse txtaria to Person", err)
-    }
+    setTextarea(e.target.value)
   }
 
   function onRightClick(e, right) {
@@ -123,9 +113,10 @@ function App(props) {
     <div className="App">
       <header className="scroll">
         {
-          uncertainRights?.map((right, i) => <span className='right' key={i} onClick={(e) => onRightClick(e, right)}>
-            {right.title}
-          </span>)
+          uncertainRights?.map((right, i) =>
+            <span className='right' key={i} onClick={(e) => console.log(right?.log)}>
+              {right.title}
+            </span>)
         }
       </header>
       <main>
@@ -144,7 +135,7 @@ function App(props) {
           <strong className='center'>זכאי</strong>
           <div className='scroll'>
             {
-              entitledRights?.map((right, i) => <span className='right' key={i} onClick={(e) => { onRightClick(e, right) }} >
+              entitledRights?.map((right, i) => <span className='right' key={i} onClick={(e) => console.log(right?.log)} >
                 {right.title}
               </span>)
             }
@@ -154,7 +145,7 @@ function App(props) {
           <strong className='center'>לא זכאי</strong>
           <div className='scroll'>
             {
-              notEntitledRights?.map((right, i) => <span className='right' key={i} onClick={(e) => { onRightClick(e, right) }} >
+              notEntitledRights?.map((right, i) => <span className='right' key={i} onClick={(e) => console.log(right?.log)} >
                 {right.title}
               </span>)
             }
