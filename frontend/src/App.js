@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { RightModel } from "rights-engine-core"
+import { RightModel, Condition } from "rights-engine-core"
 import './App.css';
-import _person from "./person.json"
 
 
 function App(props) {
@@ -22,7 +21,10 @@ function App(props) {
     catch (err) {
       console.error("failed to parse txtaria to Person", err)
     }
-    console.log(person);
+
+
+
+
     let entitled = [], notEntitled = [], uncertain = [];
     let t1 = new Date();
     try {
@@ -40,17 +42,19 @@ function App(props) {
       console.error(err)
     }
     let t2 = new Date();
-    console.log("entitled:", entitled?.length);
-    console.log("notEntitled:", notEntitled?.length);
-    console.log("uncertain:", uncertain.length)
-
 
     setEntitledRights(entitled);
     setNotEntitledRights(notEntitled);
     setUncertainRights(uncertain);
-    console.log("sortTime:", t2.getTime() - t1.getTime());
+    console.log("sorted:", {
+      entitled: entitled?.length,
+      notEntitled: notEntitled?.length,
+      uncertain: uncertain.length,
+      sortTime: t2.getTime() - t1.getTime()
+    });
+    let exceptFields = Object.keys(person)?.filter(key => person[key] != null);
     let t3 = new Date();
-    let _fields = RightModel.getPopularFields(uncertain);
+    let _fields = RightModel.getPopularFields(uncertain, Condition.And, exceptFields);
     let t4 = new Date();
     setFields(_fields)
     console.log({

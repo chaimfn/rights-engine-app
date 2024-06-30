@@ -47,8 +47,9 @@ app.get("/rights", async (req, res) => {
 		await getFromDB();
 	let t2 = new Date();
 	let diff = t2.getTime() - t1.getTime();
-	let resBody = { rights, mode: MODE, serverTime: diff }
+	let resBody = { rights: rights.length, mode: MODE, serverTime: diff }
 	console.log(resBody);
+	resBody.rights = rights;
 	res.status(200).send(resBody);
 })
 app.get("/hz", (req, res) => {

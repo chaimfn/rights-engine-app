@@ -254,7 +254,7 @@
                                                             "value": "male"
                                                         },
                                                         {
-                                                            "field": "age",
+                                                            "field": "spouseGenderAge",
                                                             "operator": ">=",
                                                             "value": 67
                                                         }
@@ -269,7 +269,7 @@
                                                             "value": "female"
                                                         },
                                                         {
-                                                            "field": "age",
+                                                            "field": "spouseGenderAge",
                                                             "operator": ">=",
                                                             "value": 62
                                                         }
