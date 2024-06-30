@@ -57,7 +57,7 @@ function App(props) {
       sortTime: t2.getTime() - t1.getTime()
     };
     console.log(log);
-    alert(JSON.stringify(log, null, 2))
+    // alert(JSON.stringify(log, null, 2))
     let exceptFields = Object.keys(_person)?.filter(key => _person[key] != null);
     let t3 = new Date();
     let _fields = RightModel.getPopularFields(uncertain, Condition.And, exceptFields);
@@ -68,7 +68,7 @@ function App(props) {
       time: t4.getTime() - t3.getTime()
     }
     console.log(log)
-    alert(JSON.stringify(log, null, 2))
+    // alert(JSON.stringify(log, null, 2))
   }
 
   function onTxtareaChange(e) {
@@ -92,7 +92,7 @@ function App(props) {
           convertTime: t3.getTime() - t2.getTime()
         };
         console.log(log);
-        alert(JSON.stringify(log, null, 2))
+        // alert(JSON.stringify(log, null, 2))
         setAllRights(_rights);
         setUncertainRights(_rights);
         let t4 = new Date();
@@ -104,7 +104,7 @@ function App(props) {
           time: t5.getTime() - t4.getTime()
         }
         console.log(log)
-        alert(JSON.stringify(log, null, 2))
+        // alert(JSON.stringify(log, null, 2))
       })
       .catch(err => console.error("Failed to get data", err))
   }, []);
