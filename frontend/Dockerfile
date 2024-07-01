@@ -4,7 +4,6 @@ ADD ./public ./public
 ADD ./src ./src
 ADD config.prod.js ./
 ADD package*.json ./
-RUN npm install --verb
 RUN npm run build
 
 FROM chaimfn/nginx:1.26.rtmp.netfree

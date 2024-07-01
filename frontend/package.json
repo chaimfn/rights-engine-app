@@ -14,7 +14,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && cp ./config.prod.js ./build/config.js && cp ./public/hz.html ./build/",
+    "build": "npm install && react-scripts build && cp ./config.prod.js ./build/config.js && cp ./public/hz.html ./build/",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
