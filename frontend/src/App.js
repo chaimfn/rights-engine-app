@@ -94,11 +94,11 @@ function App(props) {
   useEffect(() => {
     let t1 = new Date();
     let _rights = []
-    let t2 = new Date();
 
     fetch(window.config.backendUrl)
       .then(res => res?.json())
       .then(data => {
+        let t2 = new Date();
         _rights = data?.rights?.map(item => RightModel.convert(item));
         let t3 = new Date();
         setAllRights(_rights);
