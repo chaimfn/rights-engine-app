@@ -32,7 +32,7 @@ main {
   height: 392px;
   width: 100%;
   display: grid;
-  grid-template-columns: 3fr 2fr 2fr;
+  grid-template-columns: 1fr 3fr 2fr 2fr;
   /* fraction*/
 }
 
@@ -87,9 +87,26 @@ footer pre {
   word-wrap: break-word;
 }
 
-footer .msg {
+.console {
   font-size: small;
-  color: darkcyan;
-  border-top: solid 1px;
-  height: 50px;
+  direction: ltr;
 }
+
+.console .msg {
+  text-align: left;
+  border-top: solid 1px;
+  padding-top: 2px;
+}
+
+.console .msg.info {
+  color: darkcyan;
+}
+
+.console .msg.warn {
+  color: darkorange;
+}
+
+.console .msg.err {
+  color: red;
+}
+
