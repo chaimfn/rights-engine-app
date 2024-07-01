@@ -18,6 +18,16 @@ function App(props) {
     setTextarea(JSON.stringify(person, null, 2));
   }
 
+  function rightOnClick(e, right) {
+    let msg = {
+      // code: right.code,
+      // title: right.title,
+      reason: right.log
+    };
+    console.log(msg);
+    setMessage(JSON.stringify(msg, null, 2))
+  }
+
   function sortRights(e) {
     let _person = null;
     try {
@@ -135,7 +145,7 @@ function App(props) {
       <header className="scroll">
         {
           uncertainRights?.map((right, i) =>
-            <span className='right' key={i} onClick={(e) => console.log(right?.log)}>
+            <span className='right' key={i} onClick={(e) => rightOnClick(e, right)}>
               {right.title}
             </span>)
         }
@@ -143,7 +153,9 @@ function App(props) {
       <main>
         <div className='console'>
           <strong className='center'>Console</strong>
-          <pre className={`msg ${msgType}`}>{message}</pre>
+          <div className='scroll'>
+            <pre className={`msg ${msgType}`}>{message}</pre>
+          </div>
         </div>
         <div className='center'>
           <strong style={{ marginRight: "10px" }}>פרטים אישיים</strong>
@@ -160,7 +172,7 @@ function App(props) {
           <strong className='center'>זכאי</strong>
           <div className='scroll'>
             {
-              entitledRights?.map((right, i) => <span className='right' key={i} onClick={(e) => console.log(right?.log)} >
+              entitledRights?.map((right, i) => <span className='right' key={i} onClick={(e) => rightOnClick(e, right)} >
                 {right.title}
               </span>)
             }
@@ -170,7 +182,7 @@ function App(props) {
           <strong className='center'>לא זכאי</strong>
           <div className='scroll'>
             {
-              notEntitledRights?.map((right, i) => <span className='right' key={i} onClick={(e) => console.log(right?.log)} >
+              notEntitledRights?.map((right, i) => <span className='right' key={i} onClick={(e) => rightOnClick(e, right)} >
                 {right.title}
               </span>)
             }

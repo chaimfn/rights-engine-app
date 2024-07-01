@@ -96,6 +96,7 @@ footer pre {
   text-align: left;
   border-top: solid 1px;
   padding-top: 2px;
+  white-space: pre-wrap;
 }
 
 .console .msg.info {
