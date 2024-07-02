@@ -8,4 +8,5 @@ RUN npm run build
 
 FROM chaimfn/nginx:1.26.rtmp.netfree
 COPY --from=build /workdir/build /usr/share/nginx/html
-EXPOSE 80
+COPY ./default.conf /etc/nginx/conf.d/default.conf
+EXPOSE 8880
