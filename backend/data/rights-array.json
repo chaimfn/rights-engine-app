@@ -1,6 +1,5 @@
 [
     {
-        "origincode": 1329,
         "code": 1329,
         "title": "קצבת אזרח ותיק מגיל פרישה עד גיל 70",
         "rule": {
@@ -908,7 +907,6 @@
         }
     },
     {
-        "origincode": 1966,
         "code": 1966,
         "title": "דיור ציבורי למקבלי קצבת נכות נשואים או ידועים בציבור",
         "rule": {
@@ -1047,6 +1045,439 @@
                                     "field": "disabledChildAllowancePercentage",
                                     "operator": ">=",
                                     "value": 100
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "code": 2572,
+        "title": "הבטחת הכנסה למשלמי מזונות",
+        "rule": {
+            "condition": "&&",
+            "rules": [
+                {
+                    "field": "civilStatus",
+                    "operator": "in",
+                    "value": [
+                        "citizen",
+                        "resident"
+                    ]
+                },
+                {
+                    "condition": "||",
+                    "rules": [
+                        {
+                            "condition": "&&",
+                            "rules": [
+                                {
+                                    "field": "gender",
+                                    "operator": "==",
+                                    "value": "male"
+                                },
+                                {
+                                    "field": "age",
+                                    "operator": "between",
+                                    "value": [
+                                        18,
+                                        67
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "condition": "&&",
+                            "rules": [
+                                {
+                                    "field": "gender",
+                                    "operator": "==",
+                                    "value": "female"
+                                },
+                                {
+                                    "field": "age",
+                                    "operator": "between",
+                                    "value": [
+                                        18,
+                                        62
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "field": "alimonyPayer",
+                    "operator": "==",
+                    "value": true
+                },
+                {
+                    "field": "marritalStatus",
+                    "operator": "in",
+                    "value": [
+                        "divorced",
+                        "single",
+                        "separated",
+                        "widowhood",
+                        "abandoned"
+                    ]
+                },
+                {
+                    "field": "knownRights",
+                    "operator": "notAnyIn",
+                    "value": [
+                        4354,
+                        2998,
+                        1332
+                    ]
+                },
+                {
+                    "field": "studyStatus",
+                    "operator": "notIn",
+                    "value": [
+                        "Ph.D",
+                        "DR"
+                    ]
+                },
+                {
+                    "condition": "&&",
+                    "rules": [
+                        {
+                            "condition": "||",
+                            "rules": [
+                                {
+                                    "condition": "&&",
+                                    "rules": [
+                                        {
+                                            "field": "marritalStatus",
+                                            "operator": "in",
+                                            "value": [
+                                                "divorced",
+                                                "single",
+                                                "separated",
+                                                "widowhood",
+                                                "abandoned"
+                                            ]
+                                        },
+                                        {
+                                            "field": "currentMillitaryService",
+                                            "operator": "notIn",
+                                            "value": [
+                                                "mandatory",
+                                                "permanent"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "condition": "&&",
+                                    "rules": [
+                                        {
+                                            "field": "marritalStatus",
+                                            "operator": "in",
+                                            "value": [
+                                                "married",
+                                                "knownInPublic"
+                                            ]
+                                        },
+                                        {
+                                            "field": "currentMillitaryService",
+                                            "operator": "notIn",
+                                            "value": [
+                                                "mandatory",
+                                                "permanent"
+                                            ]
+                                        },
+                                        {
+                                            "field": "currentSpouseMillitaryService",
+                                            "operator": "notIn",
+                                            "value": [
+                                                "mandatory",
+                                                "permanent"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "condition": "||",
+                            "rules": [
+                                {
+                                    "field": "gender",
+                                    "operator": "==",
+                                    "value": "female"
+                                },
+                                {
+                                    "condition": "&&",
+                                    "rules": [
+                                        {
+                                            "field": "gender",
+                                            "operator": "==",
+                                            "value": "male"
+                                        },
+                                        {
+                                            "field": "studyStatus",
+                                            "operator": "notIn",
+                                            "value": [
+                                                "yeshiva",
+                                                "hessder",
+                                                "midrasha"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "condition": "||",
+                            "rules": [
+                                {
+                                    "condition": "&&",
+                                    "rules": [
+                                        {
+                                            "field": "marritalStatus",
+                                            "operator": "in",
+                                            "value": ["divorced", "separated", "widowhood", "abandoned", "single"]
+                                        },
+                                        {
+                                            "field": "studyStatus",
+                                            "operator": "notIn",
+                                            "value": ["BA", "MA"]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "condition": "&&",
+                                    "rules": [
+                                        {
+                                            "field": "marritalStatus",
+                                            "operator": "==",
+                                            "value": "widowhood"
+                                        },
+                                        {
+                                            "field": "childrenUnder24AgeNumber",
+                                            "operator": ">=",
+                                            "value": 1
+                                        }
+                                    ]
+                                },
+                                {
+                                    "condition": "&&",
+                                    "rules": [
+                                        {
+                                            "field": "marritalStatus",
+                                            "operator": "in",
+                                            "value": ["divorced", "separated", "abandoned", "single"]
+                                        },
+                                        {
+                                            "field": "childrenUnder24AgeNumber",
+                                            "operator": ">=",
+                                            "value": 1
+                                        },
+                                        {
+                                            "field": "childrenRaising",
+                                            "operator": "in",
+                                            "value": ["alone", "jointCustody"]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "condition": "&&",
+                                    "rules": [
+                                        {
+                                            "field": "marritalStatus",
+                                            "operator": "in",
+                                            "value": ["married", "knownInPublic"]
+                                        },
+                                        {
+                                            "field": "studyStatus",
+                                            "operator": "notIn",
+                                            "value": ["BA", "MA", "Ph.D", "DR", "practicalEngineering", "technician"]
+                                        },
+                                        {
+                                            "field": "spouseStudyStatus",
+                                            "operator": "notIn",
+                                            "value": ["BA", "MA", "Ph.D", "DR", "practicalEngineering", "technician"]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "condition": "||",
+                            "rules": [
+                                {
+                                    "field": "knownRights",
+                                    "operator": "anyIn",
+                                    "value": [2291, 1355, 1950, 10011, 1947]
+                                },
+                                {
+                                    "condition": "&&",
+                                    "rules": [
+                                        {
+                                            "field": "marritalStatus",
+                                            "operator": "in",
+                                            "value": ["married", "knownInPublic"]
+                                        },
+                                        {
+                                            "field": "spouseKnownRights",
+                                            "operator": "anyIn",
+                                            "value": [2291, 1355, 1950, 10011, 1947]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "field": "healthyMentalFunctionalCondition",
+                                    "operator": "in",
+                                    "value": ["mobilityLimitationPlusAids", "mobilityLimitationWithoutAids"]
+                                },
+                                {
+                                    "condition": "&&",
+                                    "rules": [
+                                        {
+                                            "field": "marritalStatus",
+                                            "operator": "in",
+                                            "value": ["married", "knownInPublic"]
+                                        },
+                                        {
+                                            "field": "spouseHealthyMentalFunctionalCondition",
+                                            "operator": "in",
+                                            "value": ["mobilityLimitationPlusAids", "mobilityLimitationWithoutAids"]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "condition": "&&",
+                                    "rules": [
+                                        {
+                                            "field": "gender",
+                                            "operator": "==",
+                                            "value": "female"
+                                        },
+                                        {
+                                            "field": "latestlyUnusualEvent",
+                                            "operator": "contains",
+                                            "value": "violenceInFamily"
+                                        },
+                                        {
+                                            "field": "stayedInWomensShelter",
+                                            "operator": "==",
+                                            "value": false
+                                        }
+                                    ]
+                                },
+                                {
+                                    "field": "medicalEventInFamily",
+                                    "operator": "contains",
+                                    "value": "hardAndRequiresCareOfFamilyMember"
+                                },
+                                {
+                                    "field": "car",
+                                    "operator": "notIn",
+                                    "value": ["myown", "regularyInMyUse"]
+                                },
+                                {
+                                    "condition": "&&",
+                                    "rules": [
+                                        {
+                                            "field": "car",
+                                            "operator": "==",
+                                            "value": "regularyInMyUse"
+                                        },
+                                        {
+                                            "field": "carsNumber",
+                                            "operator": "<",
+                                            "value": 2
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "condition": "||",
+                            "rules": [
+                                {
+                                    "condition": "&&",
+                                    "rules": [
+                                        {
+                                            "field": "age",
+                                            "operator": "<",
+                                            "value": 55
+                                        },
+                                        {
+                                            "field": "marritalStatus",
+                                            "operator": "in",
+                                            "value": ["single", "divorced", "separated", "widowhood", "abandoned"]
+                                        },
+                                        {
+                                            "field": "workAndPensionIncome",
+                                            "operator": "<=",
+                                            "value": 5206
+                                        }
+                                    ]
+                                },
+                                {
+                                    "condition": "&&",
+                                    "rules": [
+                                        {
+                                            "field": "age",
+                                            "operator": "<",
+                                            "value": 55
+                                        },
+                                        {
+                                            "field": "marritalStatus",
+                                            "operator": "in",
+                                            "value": ["married", "knownInPublic"]
+                                        },
+                                        {
+                                            "field": "workAndPensionPairIncome",
+                                            "operator": "<=",
+                                            "value": 7172
+                                        }
+                                    ]
+                                },
+                                {
+                                    "condition": "&&",
+                                    "rules": [
+                                        {
+                                            "field": "age",
+                                            "operator": "<",
+                                            "value": 55
+                                        },
+                                        {
+                                            "field": "marritalStatus",
+                                            "operator": "in",
+                                            "value": ["single", "divorced", "separated", "widowhood", "abandoned"]
+                                        },
+                                        {
+                                            "field": "workAndPensionIncome",
+                                            "operator": "<=",
+                                            "value": 6684
+                                        }
+                                    ]
+                                },
+                                {
+                                    "condition": "&&",
+                                    "rules": [
+                                        {
+                                            "field": "age",
+                                            "operator": "<",
+                                            "value": 55
+                                        },
+                                        {
+                                            "field": "marritalStatus",
+                                            "operator": "in",
+                                            "value": ["married", "knownInPublic"]
+                                        },
+                                        {
+                                            "field": "workAndPensionPairIncome",
+                                            "operator": "<=",
+                                            "value": 10029
+                                        }
+                                    ]
                                 }
                             ]
                         }

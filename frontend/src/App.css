@@ -100,7 +100,7 @@ footer pre {
 }
 
 .console .msg.info {
-  color: darkcyan;
+  color: darkslateblue;
 }
 
 .console .msg.warn {
@@ -108,6 +108,6 @@ footer pre {
 }
 
 .console .msg.err {
-  color: red;
+  color: darkred;
 }
 
