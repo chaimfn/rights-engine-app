@@ -13,7 +13,7 @@ async function createMongoClient() {
 	let mongoClient;
 
 	try {
-		mongoClient = new MongoClient(DB_CONN_STR);	
+		mongoClient = new MongoClient(DB_CONN_STR);
 		await mongoClient.connect();
 		console.log('Connected to MongoDB');
 		return mongoClient;
@@ -38,28 +38,47 @@ async function getFromFile() {
 	return require("./data/rights.json");
 }
 
-app.use(cors());
-app.use(express.json());
-app.get("/rights", async (req, res) => {
-	let t1 = new Date();
-	let rights = MODE == "dev" ?
-		await getFromFile() :
-		await getFromDB();
-	let t2 = new Date();
-	let diff = t2.getTime() - t1.getTime();
-	let resBody = { rights: rights.length, mode: MODE, serverTime: diff }
-	console.log(resBody);
-	resBody.rights = rights;
-	res.status(200).send(resBody);
-})
-app.get("/hz", (req, res) => {
-	console.log("hz");
-	res.status(200).send("hz");
-})
-app.get("/", (req, res) => {
-	res.status(200).send("ok");
-});
-app.listen(PORT, () => {
-	console.log(`Server is running on port: ${PORT}`);
-});
+app
+	.use(cors())
+	.use(express.json())
+	.get("/hz", (req, res) => {
+		console.log("hz");
+		res.status(200).send("hz");
+	})
+	.get("/ready", async (req, res) => {
+		console.log("ready");
+		let status = 200;
+		let msg = "ready";
+		try {
+			let mongoClient = await createMongoClient();
+			mongoClient.db("rights-engine");
+			mongoClient.close();
+		}
+		catch (err) {
+			status = 503;
+			console.log(err);
+			msg = "not ready";
+		}
+		finally {
+			res.status(status).send(msg);
+		}
+	})
+	.get("/rights", async (req, res) => {
+		let t1 = new Date();
+		let rights = MODE == "dev" ?
+			await getFromFile() :
+			await getFromDB();
+		let t2 = new Date();
+		let diff = t2.getTime() - t1.getTime();
+		let resBody = { rights: rights.length, mode: MODE, serverTime: diff }
+		console.log(resBody);
+		resBody.rights = rights;
+		res.status(200).send(resBody);
+	})
+	.get("/", (req, res) => {
+		res.status(200).send("ok");
+	})
+	.listen(PORT, () => {
+		console.log(`Server is running on port: ${PORT}`);
+	});
 

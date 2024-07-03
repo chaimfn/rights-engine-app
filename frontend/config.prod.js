@@ -1,3 +1,3 @@
 window.config = {
-    backendUrl: "https://rights-engine-back.onrender.com/rights"
+    backendUrl: "https://rights-engine-back.onrender.com",
 }
