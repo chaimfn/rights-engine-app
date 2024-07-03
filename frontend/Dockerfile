@@ -7,6 +7,7 @@ ADD package*.json ./
 RUN npm run build
 
 FROM chaimfn/nginx:1.26.rtmp.netfree
-COPY --from=build /workdir/build /usr/share/nginx/html
-COPY ./default.conf /etc/nginx/conf.d/default.conf
+RUN mkdir /usr/share/nginx/rights-engine
+COPY --from=build /workdir/build /usr/share/nginx/rights-engine
+COPY ./rights-engine.conf /etc/nginx/conf.d/
 EXPOSE 8880
