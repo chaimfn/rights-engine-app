@@ -3,6 +3,7 @@ require("dotenv").config();
 const PORT = process.env.PORT || 5000;
 const MODE = process.env.MODE || "prod"
 const DB_CONN_STR = process.env.DB_CONN_STR;
+const DELIMITER = "-------------"
 
 const { MongoClient } = require("mongodb");
 const express = require("express");
@@ -42,13 +43,14 @@ app
 	.use(cors())
 	.use(express.json())
 	.get("/hz", (req, res) => {
-		console.log("hz");
+		console.log("/hz");
+		console.log(DELIMITER)
 		res.status(200).send("hz");
 	})
 	.get("/ready", async (req, res) => {
-		console.log("ready");
+		let msg = "/ready";
+		console.log(msg)
 		let status = 200;
-		let msg = "ready";
 		try {
 			let mongoClient = await createMongoClient();
 			mongoClient.db("rights-engine");
@@ -60,10 +62,13 @@ app
 			msg = "not ready";
 		}
 		finally {
+			console.log("ok");
+			console.log(DELIMITER)
 			res.status(status).send(msg);
 		}
 	})
 	.get("/rights", async (req, res) => {
+		console.log("/rights");
 		let t1 = new Date();
 		let rights = MODE == "dev" ?
 			await getFromFile() :
@@ -73,12 +78,16 @@ app
 		let resBody = { rights: rights.length, mode: MODE, serverTime: diff }
 		console.log(resBody);
 		resBody.rights = rights;
+		console.log(DELIMITER)
 		res.status(200).send(resBody);
 	})
 	.get("/", (req, res) => {
+		console.log("/");
+		console.log(DELIMITER)
 		res.status(200).send("ok");
 	})
 	.listen(PORT, () => {
-		console.log(`Server is running on port: ${PORT}`);
+		console.log(`Mode: ${MODE}. Port: ${PORT}. Running`);
+		console.log(DELIMITER)
 	});
 
